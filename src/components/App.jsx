@@ -1,14 +1,11 @@
 import React from 'react';
 import '../assets/sass/base/index.scss';
-import Header from './Header';
-import Footer from './Footer';
+
+import Home from '../assets/containers/Home/Home';
 
 const App = () => {
     return (
-        <div>
-            <Header></Header>
-            <Footer></Footer>
-        </div>
+        <Home />
     )
 }
 
