@@ -1,7 +1,7 @@
 import React from 'react';
 import '../sass/base/App.scss';
 
-import MainContent from '../../components/MainContent';
+import Main from '../../components/Main';
 import Header from  '../../components/Header';
 import Footer from '../../components/Footer';
 
@@ -12,7 +12,7 @@ const App = () => {
     return (
         <div className="App">
             <Header />
-            <MainContent teste={teste}/>
+            <Main teste={teste}/>
             <Footer />
         </div>    
     )

@@ -5,6 +5,7 @@ import store from './store';
 import App from './assets/containers/App.jsx';
 
 const render = () => {
+    console.log(store.getState());
     return ReactDOM.render(<App />, document.getElementById("root"));
 }
 
