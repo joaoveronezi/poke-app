@@ -5,9 +5,9 @@ Esse component irá mostrar a lista de pokemons
 requisitada pela API
 */
 
-const MainContent = () => {
+const MainContent = ({teste}) => {
     return (
-        <h1>Main Content</h1>
+        <h1>{teste}</h1>
     )
 }
 

@@ -7,7 +7,8 @@ import styled from 'styled-components';
 const Header = () => {
     return (
         <div>
-            <Logo src={pokeLog} className="logo"></Logo>
+            <Logo src={pokeLog}></Logo>
+            <p>Procure e veja agora seu pokemon!</p>
         </div>
     )
 }
@@ -16,5 +17,5 @@ export default Header;
 
 
 const Logo = styled.img`
-    width: 400px;
+    width: 300px;
 `
