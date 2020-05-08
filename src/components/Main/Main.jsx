@@ -1,17 +1,15 @@
 import React from 'react';
+
 import './Main.scss';
+import NavBar from '../NavBar';
+import Content from '../Content';
 
-/*
-Esse component irá mostrar a lista de pokemons
-requisitada pela API
-*/
 
-const Main = ({teste}) => {
+const Main = () => {
     return (
         <div className="Main">
             <NavBar />
             <Content />
-            <h1>{ teste }</h1>
         </div>
     )
 }

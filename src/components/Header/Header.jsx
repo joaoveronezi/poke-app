@@ -1,21 +1,15 @@
-import '../../assets/sass/base/index.scss'
+
 import React from 'react';
 import pokeLog from '../../assets/images/logo.png'
-import styled from 'styled-components';
+import './Header.scss';
 
 
 const Header = () => {
     return (
         <div>
-            <Logo src={pokeLog}></Logo>
-            <p>Procure e veja agora seu pokemon!</p>
+            <img alt="Logo" src={pokeLog} />
         </div>
     )
 }
 
 export default Header;
-
-
-const Logo = styled.img`
-    width: 300px;
-`
