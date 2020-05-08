@@ -34,7 +34,7 @@ const NavBar = () => {
                             </div>
                         </li>
                         <input  className="searchbar" type="submit" value="Buscar" />
-                        <input className="searchbar"></input>
+                        <input className="searchbar" placeholder="Buscar Pokemon"></input>
                     </form>
                     </ul>
         </div>
