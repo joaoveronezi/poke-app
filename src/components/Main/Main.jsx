@@ -4,12 +4,11 @@ import './Main.scss';
 import NavBar from '../NavBar';
 import Content from '../Content';
 
-
 const Main = () => {
     return (
         <div className="Main">
             <NavBar />
-            <Content />
+            <Content  />
         </div>
     )
 }

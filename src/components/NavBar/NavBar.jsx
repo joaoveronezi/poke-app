@@ -6,7 +6,6 @@ import './NavBar.scss';
 const NavBar = () => {
     return (
         <div className="navbar">
-                    
                     <ul>
                     <form>
                         <li><p>Filtros:</p></li>
