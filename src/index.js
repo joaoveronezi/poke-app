@@ -7,7 +7,7 @@ import store from './store';
 import App from './assets/containers/App.jsx';
 
 const render = () => {
-    //console.log(store.getState());
+    console.log("Atual state da Aplicação =>", store.getState());
     return ReactDOM.render(
     <Provider store={store}>
     <App />

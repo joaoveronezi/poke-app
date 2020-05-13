@@ -1,15 +1,6 @@
-import { POKEMON_LIST } from '../../utils/constants/action-types';
+import { combineReducers } from 'redux';
+import pokemons from './fetchPokemons';
 
-export default (state, action) => {
-    switch(action.type) {
-        case POKEMON_LIST:
-            return {
-                ...state,
-                payload:action.payload
-            }
-            default:
-                return{
-                    ...state
-                } 
-    }
-}
+export default combineReducers({
+    pokemons
+})
