@@ -1,6 +1,3 @@
-import { combineReducers } from 'redux';
-import pokemons from './fetchPokemons';
-
-export default combineReducers({
-    pokemons
-})
+export default (state = {}, action) => {
+    return state;
+}
