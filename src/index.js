@@ -7,6 +7,7 @@ import store from './store';
 import App from './assets/containers/App.jsx';
 
 const render = () => {
+    console.log("Log do index =>", store.getState())
     return ReactDOM.render(
     <Provider store={store}>
     <App />
