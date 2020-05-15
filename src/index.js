@@ -1,21 +1,21 @@
-import './assets/sass/base/index.scss';
-import { Provider } from 'react-redux';
+import "./assets/sass/base/index.scss";
+import { Provider } from "react-redux";
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import store from './store';
-import App from './assets/containers/App.jsx';
+import React from "react";
+import ReactDOM from "react-dom";
+import store from "./store";
+import App from "./assets/containers/App.jsx";
 
 const render = () => {
-    console.log("Log do index =>", store.getState())
-    return ReactDOM.render(
+  console.log("Log do index =>", store.getState());
+  return ReactDOM.render(
     <Provider store={store}>
-    <App />
-    </Provider>, 
-    document.getElementById("root"));
-}
+      <App />
+    </Provider>,
+    document.getElementById("root")
+  );
+};
 
 render();
 
 store.subscribe(render);
-
