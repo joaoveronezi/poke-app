@@ -1,60 +1,42 @@
 import React, { Component } from "react";
+import '../sass/base/App.scss';
+import { connect } from 'react-redux';
 
-import { getSoupDataFromAPI } from "../../store/sagas";
-import "antd/dist/antd.css";
-import {connect} from "react-redux";
-import Icon from "antd/lib/icon"
+import fetchProductsAction from '../../store/sagas';
+import {
+  getProductsError, 
+  getProducts, 
+  getProductsPending
+} from '../../store/reducers';
 
-import { List, Avatar } from 'antd';
-
+//import Main from '../../components/Main';
+//import Header from '../../components/Header';
 
 class App extends Component {
-
-  componentDidMount(){
-    this.props.dispatch(getSoupDataFromAPI())
-    {console.log("console do APP", this.props)}
-  }
-
-  render() {
-      const { products, loading } = this.props;
-
-      if (loading) {
-          return <Icon type="loading" />;
-      }
-      return (
-        <div className="App">
-        <header className="App-header" />
-        <div>
-          
-        <ul>
-          {products.map((data)=> {
-            return ( 
-              <List key={data.id}>
-               <List.Item>
-                  <List.Item.Meta
-                    avatar={<Avatar src="http://lorempixel.com/400/200/food/" />}
-                    title={<a href="##">{data.title}</a>}
-                    description={data.description}
-                  />
-                </List.Item>
-              
-              </List>
-            )
-          })}
-        </ul>
-        </div>
-      </div>
-    );
-  }
-} 
-
-
-const mapStateToProps=(state)=>{
-  return {
-    products:state.products,
-    isLoading:state.isLoading
+  componentDidMount() {
+    this.props.dispatch(fetchProductsAction());
   }
  
+  render() {
+    const { products, error, pending } = this.props;
+
+ 
+    return (
+      <div> 
+     
+        <div>
+          <ul>
+          <li>{products}</li> 
+          </ul>
+        </div>
+      </div>
+    )
+  }
 }
+const mapStateToProps = state =>({
+  error: getProductsError(state),
+  products: getProducts(state),
+  pending: getProductsPending(state)
+})
 
 export default connect(mapStateToProps)(App);

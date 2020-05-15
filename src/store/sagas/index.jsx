@@ -1,47 +1,51 @@
-import { 
-    GET_PROD_DATA, 
-    IS_LOADING, 
-    GET_PROD_DATA_FAIL 
+import {
+    FETCH_PRODUCTS_PENDING, 
+    FETCH_PRODUCTS_SUCCESS,
+    FETCH_PRODUCTS_ERROR 
 } from '../../utils/constants/action-types';
-import axios from 'axios';
 
-export const getSoupDataFromAPI = () => {
-    return (dispatch) => {
-        //BEGIN action
-        dispatch(loadingScreen());
-       return axios.get("http://shopsoup.herokuapp.com/api/v1/product")
-       .then(({data}) => {
-            console.log("log da action", data);
-            //SUCCES action
-            dispatch(getSoupDataFromAPIAsync(data));
-            return data;
-       })
-       //FAIL action
-       .catch(dispatch(error => getSoupDataFromAPIFailure(error)));
+const fetchProducts = () => {
+    return dispatch => {
+        //BEGIN ACTION
+        dispatch(fetchProductsPending());
+        fetch('http://shopsoup.herokuapp.com/api/v1/product')
+        .then(res => res.json())
+        .then(res => {
+            console.log("tanka =>", res.results);
+            
+            if (res.error) {
+                throw(res.error);
+            }
+            //SUCCESS ACTION
+            dispatch(fetchProductsSuccess(res.results[1].description));
+            return res.results;
+        })
+        //FAIL ACTION
+        .catch(error => {
+            dispatch(fetchProductsError(error));
+        })
     }
 }
 
-//BEGIN action
-export const loadingScreen = () => {
+
+const fetchProductsPending = () => {
     return {
-        type: IS_LOADING,
-        payload: true
+        type: FETCH_PRODUCTS_PENDING
     }
 }
 
-//SUCCES action
-export const getSoupDataFromAPIAsync = products => {
+const fetchProductsSuccess = product => {
     return {
-        type: GET_PROD_DATA,
-        payload: products
+        type: FETCH_PRODUCTS_SUCCESS,
+        payload: product
     }
 }
 
-
-//FAIL action
-export const getSoupDataFromAPIFailure = error => {
+const fetchProductsError = error => {
     return {
-        type: GET_PROD_DATA_FAIL,
-        payload: error
+        type: FETCH_PRODUCTS_ERROR,
+        error: error
     }
 }
+
+export default fetchProducts;

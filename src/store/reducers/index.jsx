@@ -1,32 +1,39 @@
-import { 
-    GET_PROD_DATA, 
-    IS_LOADING, 
-    GET_PROD_DATA_FAIL 
+import {
+    FETCH_PRODUCTS_PENDING, 
+    FETCH_PRODUCTS_SUCCESS,
+    FETCH_PRODUCTS_ERROR 
 } from '../../utils/constants/action-types';
 
 const initialState = {
-    products: []
+    pending: false,
+    products: [],
+    error: null
 }
 
 export default (state = {initialState}, action) => {
     switch(action.type) {
-        case GET_PROD_DATA:
+        case FETCH_PRODUCTS_PENDING:
             return {
                 ...state,
-                loading: false,
-                products: action.payload
-            };
-        case IS_LOADING:
-            return {
-                ...state,
-                loading: true
+                pending: true
             }
-        case GET_PROD_DATA_FAIL:
+        case FETCH_PRODUCTS_SUCCESS:
             return {
                 ...state,
-                error: action.payload.error
+                pending: false,
+                products: action.payload
+            }
+        case FETCH_PRODUCTS_ERROR:
+            return {
+                ...state,
+                pending: false,
+                error: action.error
             }
         default:
             return state;
     }
 }
+
+export const getProducts = state => state.products;
+export const getProductsPending = state => state.pending;
+export const getProductsError = state => state.error;
