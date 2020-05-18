@@ -11,14 +11,15 @@ const fetchProducts = () => {
     fetch("http://shopsoup.herokuapp.com/api/v1/product")
       .then((res) => res.json())
       .then((res) => {
-        console.log("Console Action =>", res.results);
-
+        const data = res.results;
+        console.log("Console Action =>", data);
         if (res.error) {
           throw res.error;
         }
+
         //SUCCESS ACTION
-        dispatch(fetchProductsSuccess(res.results[1].description));
-        return res.results;
+        dispatch(fetchProductsSuccess(data));
+        return data;
       })
       //FAIL ACTION
       .catch((error) => {
