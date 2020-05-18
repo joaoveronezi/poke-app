@@ -1,20 +1,40 @@
-import React from 'react';
-import '../sass/base/App.scss';
+import React, { Component } from "react";
+import "../sass/base/App.scss";
+import { connect } from "react-redux";
 
-import Main from '../../components/Main/Main';
-import Header from  '../../components/Header';
-import Footer from '../../components/Footer';
+import fetchProductsAction from "../../store/sagas";
+import {
+  getProductsError,
+  getProducts,
+  getProductsPending,
+} from "../../store/reducers";
 
+//import Main from '../../components/Main';
+//import Header from '../../components/Header';
 
-const App = () => {
-    
+class App extends Component {
+  componentDidMount() {
+    this.props.dispatch(fetchProductsAction());
+  }
+
+  render() {
+    const { products, error, pending } = this.props;
     return (
-        <div className="App">
-            <Header />
-            <Main />
-            <Footer />
-        </div>    
-    )
+      <div>
+        <div>
+          <ul>
+            <li>{products}</li>
+          </ul>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  error: getProductsError(state),
+  products: getProducts(state),
+  pending: getProductsPending(state),
+});
+
+export default connect(mapStateToProps)(App);

@@ -1,13 +1,11 @@
 import React from 'react';
 
-import './Main.scss';
 import NavBar from '../NavBar';
 import Content from '../Content';
 
-
 const Main = () => {
     return (
-        <div className="Main">
+        <div>
             <NavBar />
             <Content />
         </div>
