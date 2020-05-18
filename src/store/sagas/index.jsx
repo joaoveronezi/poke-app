@@ -11,7 +11,7 @@ const fetchProducts = () => {
     fetch("http://shopsoup.herokuapp.com/api/v1/product")
       .then((res) => res.json())
       .then((res) => {
-        console.log("tanka =>", res.results);
+        console.log("Console Action =>", res.results);
 
         if (res.error) {
           throw res.error;
