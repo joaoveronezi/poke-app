@@ -9,26 +9,39 @@ import {
   getProductsPending,
 } from "../../store/reducers";
 
-//import Main from '../../components/Main';
-//import Header from '../../components/Header';
+import Main from "../../components/Main";
+import Header from "../../components/Header";
 
 class App extends Component {
-  componentDidMount() {
+  /* componentDidMount() {
     this.props.dispatch(fetchProductsAction());
   }
-
+*/
   render() {
-    const { products, error, pending } = this.props;
-    if (error) return <div>Error!</div>;
+    // const { products, error, pending } = this.props;
+    //if (error) return <div>Error!</div>;
+    //if (pending) return <div>Loading...</div>;
 
     return (
       <div>
-        {products
-          ? products.map((item, index) => {
-              return <div key={item.id}>{item.title}</div>;
-            })
-          : "Loading..."}
+        <Header />
+        <Main />
       </div>
+      /* <div>
+        {products &&
+          products.map((item, index) => {
+            return (
+              <div key={item.id}>
+                <ul>
+                  <li>{item.title}</li>
+                  <br />
+                  <li>{item.description}</li>
+                </ul>
+              </div>
+            );
+          })}
+      </div>
+      */
     );
   }
 }
