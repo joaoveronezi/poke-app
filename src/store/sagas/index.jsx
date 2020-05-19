@@ -4,25 +4,22 @@ import {
   FETCH_PRODUCTS_ERROR,
 } from "../../utils/constants/action-types";
 
+import axios from "../../utils/services/api.js";
+
 const fetchProducts = () => {
   return (dispatch) => {
-    //BEGIN ACTION
+    //BEGIN action
     dispatch(fetchProductsPending());
-    fetch("http://shopsoup.herokuapp.com/api/v1/product")
-      .then((res) => res.json())
+    axios
+      .get("/users", {})
       .then((res) => {
-        const data = res.results;
-        console.log("Console Action =>", data);
-        if (res.error) {
-          throw res.error;
-        }
-
-        //SUCCESS ACTION
+        const data = res.data;
+        console.log(data);
+        //SUCCESS action
         dispatch(fetchProductsSuccess(data));
-        return data;
       })
-      //FAIL ACTION
       .catch((error) => {
+        //FAIL action
         dispatch(fetchProductsError(error));
       });
   };
@@ -34,10 +31,10 @@ const fetchProductsPending = () => {
   };
 };
 
-const fetchProductsSuccess = (product) => {
+const fetchProductsSuccess = (items) => {
   return {
     type: FETCH_PRODUCTS_SUCCESS,
-    payload: product,
+    payload: items,
   };
 };
 
