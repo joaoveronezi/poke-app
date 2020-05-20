@@ -1,15 +1,39 @@
-import React from 'react';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-import NavBar from '../NavBar';
-import Content from '../Content';
+import NavBar from "../NavBar";
+import Content from "../Content";
+import Footer from "../Footer";
 
-const Main = () => {
+import fetchProductsAction from "../../store/sagas";
+import {
+  getProductsError,
+  getProducts,
+  getProductsPending,
+} from "../../store/reducers";
+
+class Main extends Component {
+  componentDidMount() {
+    this.props.dispatch(fetchProductsAction());
+  }
+
+  render() {
+    const { items, error, pending } = this.props;
+
     return (
-        <div>
-            <NavBar />
-            <Content />
-        </div>
-    )
+      <div>
+        <NavBar />
+        <Content />
+        <Footer />
+      </div>
+    );
+  }
 }
 
-export default Main;
+const mapStateToProps = (state) => ({
+  error: getProductsError(state),
+  items: getProducts(state),
+  pending: getProductsPending(state),
+});
+
+export default connect(mapStateToProps)(Main);
