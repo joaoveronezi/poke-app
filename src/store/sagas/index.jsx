@@ -30,11 +30,18 @@ const fetchProducts = () => {
   return async (dispatch) => {
     dispatch(fetchProductsPending());
     try {
-      const response = await api.get();
-      const data = response.data.results;
+      const response = await api.get("?limit=20");
+      const dados = response.data.results;
+      dispatch(fetchProductsSuccess(dados));
+      console.log(dados);
 
-      dispatch(fetchProductsSuccess(data));
-      console.log(data);
+      response.map(async (dados, index) => {
+        const groupInfo = await api.get(`${dados.id}`);
+        console.log(groupInfo);
+      });
+
+      const poke = await api.get("/1/");
+      console.log(poke.data.abilities);
     } catch (error) {
       dispatch(fetchProductsError(error));
       console.log(error);

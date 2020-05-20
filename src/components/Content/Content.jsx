@@ -20,20 +20,7 @@ class Content extends Component {
     if (pending) return <div>Loading...</div>;
     if (error) return console.log(error.message);
 
-    return (
-      <div>
-        {items &&
-          items.map((item, index) => {
-            return (
-              <div className="poke-container">
-                <div className="card">
-                  <h3>{item.name}</h3>
-                </div>
-              </div>
-            );
-          })}
-      </div>
-    );
+    return <div></div>;
   }
 }
 
