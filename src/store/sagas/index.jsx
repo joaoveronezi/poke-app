@@ -4,13 +4,13 @@ import {
   FETCH_PRODUCTS_ERROR,
 } from "../../utils/constants/action-types";
 
-import axios from "../../utils/services/api.js";
+import api from "../../utils/services/api.js";
 
-const fetchProducts = () => {
+/*const fetchProducts = () => {
   return (dispatch) => {
     //BEGIN action
     dispatch(fetchProductsPending());
-    axios
+    api
       .get("/users", {})
       .then((res) => {
         const data = res.data;
@@ -22,6 +22,21 @@ const fetchProducts = () => {
         //FAIL action
         dispatch(fetchProductsError(error));
       });
+  };
+};
+*/
+
+const fetchProducts = () => {
+  return async (dispatch) => {
+    dispatch(fetchProductsPending());
+    try {
+      const response = await api.get("/users", {});
+      dispatch(fetchProductsSuccess(response.data));
+      console.log(response.data);
+    } catch (error) {
+      dispatch(fetchProductsError(error));
+      console.log(error);
+    }
   };
 };
 

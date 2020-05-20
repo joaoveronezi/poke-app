@@ -31,6 +31,7 @@ class App extends Component {
         {items &&
           items.map((item, index) => {
             return (
+              // <Main item={item.name}/>
               <div key={item.id}>
                 <p>{item.name}</p>
                 <p>{item.username}</p>
