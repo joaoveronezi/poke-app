@@ -1,5 +1,6 @@
 import React from "react";
 
+import "./Main.scss";
 import NavBar from "../NavBar";
 import Content from "../Content";
 import Footer from "../Footer";

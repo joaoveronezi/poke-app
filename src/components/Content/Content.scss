@@ -1,9 +1,10 @@
 .card {
-  color: white;
-  width: 200px;
-  background-color: black;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  text-align: center;
+  background-color: #f1f1f1;
 }
-
-.container {
-  padding: 2px 16px;
+.poke-container {
+  margin: auto;
+  width: 10%;
+  padding: 10px;
 }

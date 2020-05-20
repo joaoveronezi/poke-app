@@ -30,9 +30,11 @@ const fetchProducts = () => {
   return async (dispatch) => {
     dispatch(fetchProductsPending());
     try {
-      const response = await api.get("/users", {});
-      dispatch(fetchProductsSuccess(response.data));
-      console.log(response.data);
+      const response = await api.get();
+      const data = response.data.results;
+
+      dispatch(fetchProductsSuccess(data));
+      console.log(data);
     } catch (error) {
       dispatch(fetchProductsError(error));
       console.log(error);

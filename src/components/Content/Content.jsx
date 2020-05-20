@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+import "./Content.scss";
+
 import fetchProductsAction from "../../store/sagas";
 import {
   getProductsError,
@@ -22,7 +24,13 @@ class Content extends Component {
       <div>
         {items &&
           items.map((item, index) => {
-            return <p>{item.name}</p>;
+            return (
+              <div className="poke-container">
+                <div className="card">
+                  <h3>{item.name}</h3>
+                </div>
+              </div>
+            );
           })}
       </div>
     );
