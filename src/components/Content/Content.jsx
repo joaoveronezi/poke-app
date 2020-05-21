@@ -20,7 +20,7 @@ class Content extends Component {
     if (pending) return <div>Loading...</div>;
     if (error) return console.log(error.message);
 
-    return <div></div>;
+    return <div>Pah</div>;
   }
 }
 
