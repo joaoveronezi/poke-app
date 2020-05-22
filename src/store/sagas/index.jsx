@@ -6,25 +6,6 @@ import {
 
 import api from "../../utils/services/api.js";
 
-/*const fetchProducts = () => {
-  return (dispatch) => {
-    //BEGIN action
-    dispatch(fetchProductsPending());
-    api
-      .get("/users", {})
-      .then((res) => {
-        const data = res.data;
-        console.log(data);
-        //SUCCESS action
-        dispatch(fetchProductsSuccess(data));
-      })
-      .catch((error) => {
-        //FAIL action
-        dispatch(fetchProductsError(error));
-      });
-  };
-};
-*/
 const PokeResponse = {
   name: "",
   url: "",
@@ -39,15 +20,19 @@ const fetchProducts = () => {
     dispatch(fetchProductsPending());
     try {
       const response = await api.get();
-      const itemsData = await Promise.all(
-        response.data.results.map((k = { PokeResponse }) => api.get(k.url))
-      );
+      const itemsData = [];
+      response.data.results.map(async (k = { PokeResponse }) => {
+        itemsData.push(await api.get(k.url));
+      });
 
-      const pokemons = itemsData.map((j = { pokeData }) => api.get(j.data));
+      const pokemons = [];
+      itemsData.forEach((pokes) => {
+        pokemons.push(pokes.data);
+      });
+      //const pokemons = itemsData.map((j = { pokeData }) => api.get(j.data));
 
       console.log("Console da action => ", response.data.results);
-      console.log("Console 2 da action => ", itemsData);
-      //  const poker = itemsData.map((pokeData, index) => api.get(pokeData.data));
+      console.log("Console 2 da action => ", pokemons);
     } catch (error) {
       //dispatch(fetchProductsError(error));
       console.log(error);
