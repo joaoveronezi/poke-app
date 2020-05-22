@@ -11,25 +11,22 @@ const PokeResponse = {
   url: "",
 };
 
-const pokeData = {
-  data: {},
-};
-
 const fetchProducts = () => {
   return async (dispatch) => {
     dispatch(fetchProductsPending());
     try {
+      //primeiro pegamos os pokemons, com seus nomes e urls
       const response = await api.get();
-      const itemsData = [];
-      response.data.results.map(async (k = { PokeResponse }) => {
-        itemsData.push(await api.get(k.url));
-      });
-
-      const pokemons = [];
-      itemsData.forEach((pokes) => {
-        pokemons.push(pokes.data);
-      });
-      //const pokemons = itemsData.map((j = { pokeData }) => api.get(j.data));
+      //depois demos um map nos resultados para pegarmos sómente as URLs
+      const requests = response.data.results.map((k = { PokeResponse }) =>
+        api.get(k.url)
+      );
+      //usamos um promise.all para garantir a sincronia da nossa funçao assincrona
+      const res = await Promise.all(requests);
+      //usamos um map no res, dessa forma a gente consegue pegar somente o que está presente no objeto data
+      const pokemons = res.map((res) => res.data);
+      //ordenaçao
+      pokemons.sort((a, b) => a.id < b.id);
 
       console.log("Console da action => ", response.data.results);
       console.log("Console 2 da action => ", pokemons);
