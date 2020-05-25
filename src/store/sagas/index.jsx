@@ -1,7 +1,7 @@
 import {
-  FETCH_PRODUCTS_PENDING,
-  FETCH_PRODUCTS_SUCCESS,
-  FETCH_PRODUCTS_ERROR,
+  FETCH_POKEMONS_PENDING,
+  FETCH_POKEMONS_SUCCESS,
+  FETCH_POKEMONS_ERROR,
 } from "../../utils/constants/action-types";
 
 import api from "../../utils/services/api.js";
@@ -11,50 +11,45 @@ const PokeResponse = {
   url: "",
 };
 
-const fetchProducts = () => {
+const fetchPokemons = () => {
   return async (dispatch) => {
-    dispatch(fetchProductsPending());
+    dispatch(fetchPokemonsPending());
     try {
-      //primeiro pegamos os pokemons, com seus nomes e urls
       const response = await api.get();
-      //depois demos um map nos resultados para pegarmos sómente as URLs
       const requests = response.data.results.map((k = { PokeResponse }) =>
         api.get(k.url)
       );
-      //usamos um promise.all para garantir a sincronia da nossa funçao assincrona
       const res = await Promise.all(requests);
-      //usamos um map no res, dessa forma a gente consegue pegar somente o que está presente no objeto data
       const pokemons = res.map((res) => res.data);
-      //ordenaçao
       pokemons.sort((a, b) => a.id < b.id);
-
       console.log("Console da action => ", response.data.results);
       console.log("Console 2 da action => ", pokemons);
+      dispatch(fetchPokemonsSuccess(pokemons));
     } catch (error) {
-      //dispatch(fetchProductsError(error));
+      dispatch(fetchPokemonsError(error));
       console.log(error);
     }
   };
 };
 
-const fetchProductsPending = () => {
+const fetchPokemonsPending = () => {
   return {
-    type: FETCH_PRODUCTS_PENDING,
+    type: FETCH_POKEMONS_PENDING,
   };
 };
 
-const fetchProductsSuccess = (items) => {
+const fetchPokemonsSuccess = (data) => {
   return {
-    type: FETCH_PRODUCTS_SUCCESS,
-    payload: items,
+    type: FETCH_POKEMONS_SUCCESS,
+    payload: data,
   };
 };
 
-const fetchProductsError = (error) => {
+const fetchPokemonsError = (error) => {
   return {
-    type: FETCH_PRODUCTS_ERROR,
+    type: FETCH_POKEMONS_ERROR,
     error: error,
   };
 };
 
-export default fetchProducts;
+export default fetchPokemons;

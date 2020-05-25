@@ -3,31 +3,31 @@ import { connect } from "react-redux";
 
 import "./Content.scss";
 
-import fetchProductsAction from "../../store/sagas";
+import fetchPokemonsAction from "../../store/sagas";
 import {
-  getProductsError,
-  getProducts,
-  getProductsPending,
-} from "../../store/reducers";
+  getPokemonsError,
+  getPokemons,
+  getPokemonsPending,
+} from "../../store/reducers/pokemons";
 
 class Content extends Component {
   componentDidMount() {
-    this.props.dispatch(fetchProductsAction());
+    this.props.dispatch(fetchPokemonsAction());
   }
 
   render() {
-    const { items, error, pending } = this.props;
+    const { data, error, pending } = this.props;
     if (pending) return <div>Loading...</div>;
     if (error) return console.log(error.message);
 
-    return <div>Pah</div>;
+    return <div>asd</div>;
   }
 }
 
 const mapStateToProps = (state) => ({
-  error: getProductsError(state),
-  items: getProducts(state),
-  pending: getProductsPending(state),
+  error: getPokemonsError(state),
+  data: getPokemons(state),
+  pending: getPokemonsPending(state),
 });
 
 export default connect(mapStateToProps)(Content);
