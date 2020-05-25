@@ -28,6 +28,7 @@ const fetchProducts = () => {
       //ordenaçao
       pokemons.sort((a, b) => a.id < b.id);
 
+      //comentario
       console.log("Console da action => ", response.data.results);
       console.log("Console 2 da action => ", pokemons);
     } catch (error) {
