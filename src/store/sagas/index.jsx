@@ -23,6 +23,7 @@ const fetchPokemons = () => {
       const pokemons = res.map((res) => res.data);
       pokemons.sort((a, b) => a.id < b.id);
 
+      //comentario
       console.log("Console da action => ", response.data.results);
       console.log("Console 2 da action => ", pokemons);
 
