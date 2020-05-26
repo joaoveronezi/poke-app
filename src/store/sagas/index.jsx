@@ -22,8 +22,10 @@ const fetchPokemons = () => {
       const res = await Promise.all(requests);
       const pokemons = res.map((res) => res.data);
       pokemons.sort((a, b) => a.id < b.id);
+
       console.log("Console da action => ", response.data.results);
       console.log("Console 2 da action => ", pokemons);
+
       dispatch(fetchPokemonsSuccess(pokemons));
     } catch (error) {
       dispatch(fetchPokemonsError(error));
