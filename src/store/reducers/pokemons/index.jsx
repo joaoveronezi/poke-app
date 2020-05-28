@@ -5,35 +5,35 @@ import {
 } from "../../../utils/constants/action-types";
 
 const initialState = {
+  items: [],
   pending: false,
-  data: [],
   error: null,
 };
 
 export default (state = { initialState }, action) => {
   switch (action.type) {
-    case FETCH_POKEMONS_PENDING:
+    case FETCH_POKEMONS_PENDING: {
       return {
         ...state,
         pending: true,
       };
-    case FETCH_POKEMONS_SUCCESS:
+    }
+    case FETCH_POKEMONS_SUCCESS: {
+      console.log("Console do reducer ->", action.payload);
       return {
         ...state,
         pending: false,
-        data: action.payload,
+        items: action.payload,
       };
-    case FETCH_POKEMONS_ERROR:
+    }
+    case FETCH_POKEMONS_ERROR: {
       return {
         ...state,
         pending: false,
         error: action.error,
       };
+    }
     default:
       return state;
   }
 };
-
-export const getPokemons = (state) => state.items;
-export const getPokemonsPending = (state) => state.pending;
-export const getPokemonsError = (state) => state.error;
