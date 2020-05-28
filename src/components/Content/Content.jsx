@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import "./Content.scss";
+import PokemonCard from "../PokemonCard";
 
 import { fetchPokemonsPending } from "../../store/actions";
 
@@ -16,8 +17,11 @@ class Content extends Component {
     if (error) return console.log(error.menssage);
 
     return (
-      <div>
-        <h1>teste</h1>
+      <div className="List">
+        {data &&
+          data.map((item, index) => {
+            return <PokemonCard key={item.id} name={item.name} />;
+          })}
       </div>
     );
   }

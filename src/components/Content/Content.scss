@@ -8,3 +8,10 @@
   width: 10%;
   padding: 10px;
 }
+.List {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+}
