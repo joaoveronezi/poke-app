@@ -10,7 +10,6 @@ const Main = () => {
     <div>
       <NavBar />
       <Content />
-      <Footer />
     </div>
   );
 };
