@@ -3,7 +3,6 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-
     li {
         float: left;
         p {
@@ -25,12 +24,9 @@ ul {
         }
         input {
             border: 2px solid transparent;
-           
-            
         }
     }
     .searchbar {
-        
         border: 2px solid transparent;
         float: right;
         margin: 14px 16px;
@@ -38,4 +34,6 @@ ul {
 }
 .navbar {
     height: 5rem;
+    padding-top: 5%;
+    padding-bottom: 5%;
 }

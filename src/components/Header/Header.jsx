@@ -1,15 +1,13 @@
-
-import React from 'react';
-import pokeLog from '../../assets/images/logo.png'
-import './Header.scss';
-
+import React from "react";
+import pokeLog from "../../assets/images/logo.png";
+import "./Header.scss";
 
 const Header = () => {
-    return (
-        <div>
-            <img alt="Logo" src={pokeLog} />
-        </div>
-    )
-}
+  return (
+    <div className="Header">
+      <img alt="Logo" src={pokeLog} />
+    </div>
+  );
+};
 
 export default Header;

@@ -20,7 +20,27 @@ class Content extends Component {
       <div className="List">
         {data &&
           data.map((item, index) => {
-            return <PokemonCard key={item.id} name={item.name} />;
+            if (item.types.length > 1) {
+              return (
+                <PokemonCard
+                  key={item.id}
+                  id={item.id}
+                  name={item.name}
+                  image={item.sprites.front_default}
+                  type1={item.types[0].type.name}
+                  type2={item.types[1].type.name}
+                />
+              );
+            }
+            return (
+              <PokemonCard
+                key={item.id}
+                id={item.id}
+                name={item.name}
+                image={item.sprites.front_default}
+                type1={item.types[0].type.name}
+              />
+            );
           })}
       </div>
     );
@@ -28,7 +48,6 @@ class Content extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log("App state =>", state);
   return {
     data: state.data.items,
     error: state.data.error,

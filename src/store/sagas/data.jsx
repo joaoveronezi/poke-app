@@ -12,7 +12,7 @@ const pokemonResponse = {
 
 function* fetchPokemonData() {
   try {
-    const response = yield call(api.get, "");
+    const response = yield call(api.get, "?offset=0&limit=54");
     console.log("Console do saga", response.data);
     const requests = yield Promise.all(
       response.data.results.map((k = { pokemonResponse }) => api.get(k.url))

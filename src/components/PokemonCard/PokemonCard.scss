@@ -1,16 +1,39 @@
 .CardBody {
-    width: 300px;
-    height: 400px;
-    border-radius: 10px;
-    box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.1);
-    background-color: #ffffff;
-    margin-bottom: 15px;
-    margin-left: 15px;
+  width: 150px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+  margin-left: 15px;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
 }
 
 .CardHeader {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-flow: column;
+  flex: 60%;
+  p {
+    color: #737373;
+  }
+}
+
+.CardInfo {
+  flex: 40%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3%;
+}
+.pokemonImage {
+  width: 100px;
+  height: 100px;
+}
+.CardInfoDualType {
+  flex: 40%;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 3%;
 }
