@@ -8,23 +8,22 @@
   display: flex;
   align-items: center;
   flex-flow: column;
-}
-
-.CardHeader {
-  flex: 60%;
-  p {
-    color: #737373;
+  .CardHeader {
+    flex: 60%;
+    p {
+      color: #737373;
+    }
+  }
+  .CardInfo {
+    flex: 40%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3%;
   }
 }
 
-.CardInfo {
-  flex: 40%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 3%;
-}
 .pokemonImage {
   width: 100px;
   height: 100px;
