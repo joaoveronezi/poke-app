@@ -2,6 +2,7 @@ import {
   FETCH_POKEMONS_PENDING,
   FETCH_POKEMONS_SUCCESS,
   FETCH_POKEMONS_ERROR,
+  FILTER_POKEMONS,
 } from "../../../utils/constants/action-types";
 
 const initialState = {
