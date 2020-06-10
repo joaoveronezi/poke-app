@@ -5,10 +5,10 @@ import "./Content.scss";
 import PokemonCard from "../PokemonCard";
 
 import {
-  fetchPokemonsPending,
-  filterPokemons,
+  // fetchPokemonsPending,
+  // filterPokemons,
   fetchPokemonData,
-} from "../../store/actions";
+} from "../../store/ducks/pokemons/actions";
 
 class Content extends Component {
   componentDidMount() {
@@ -38,7 +38,7 @@ class Content extends Component {
             );
           })}
 
-        <button onClick={(e) => this.props.fetchPokemonData()}>
+        <button onClick={(e) => this.props.fetchPokemonData(40)}>
           CLick me!
         </button>
       </div>

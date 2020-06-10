@@ -1,10 +1,4 @@
-import {
-  FETCH_POKEMONS_PENDING,
-  FETCH_POKEMONS_SUCCESS,
-  FETCH_POKEMONS_ERROR,
-  // FILTER_POKEMONS,
-  FETCH_POKEMON_DATA,
-} from "../../../utils/constants/action-types";
+import Types from "./Types";
 
 const initialState = {
   items: [],
@@ -17,19 +11,19 @@ const initialState = {
 
 export default (state = { initialState }, action) => {
   switch (action.type) {
-    case FETCH_POKEMON_DATA: {
+    case Types.FETCH_POKEMON_DATA: {
       return {
         ...state,
         offset: action.payload,
       };
     }
-    case FETCH_POKEMONS_PENDING: {
+    case Types.FETCH_POKEMONS_PENDING: {
       return {
         ...state,
         pending: true,
       };
     }
-    case FETCH_POKEMONS_SUCCESS: {
+    case Types.FETCH_POKEMONS_SUCCESS: {
       console.log("Console do reducer ->", action.payload);
       return {
         ...state,
@@ -46,7 +40,7 @@ export default (state = { initialState }, action) => {
     //     name: action.payload.name,
     //   };
     // }
-    case FETCH_POKEMONS_ERROR: {
+    case Types.FETCH_POKEMONS_ERROR: {
       return {
         ...state,
         pending: false,

@@ -1,12 +1,7 @@
 import { takeLatest, fork, put, call, select } from "redux-saga/effects";
-import { fetchPokemonsSuccess, fetchPokemonsError } from "../actions";
-import {
-  FETCH_POKEMONS_PENDING,
-  FETCH_POKEMON_DATA,
-} from "../../utils/constants/action-types";
-//import * as actions from "../actions";
-
-import api from "../../utils/services/api";
+import { fetchPokemonsSuccess, fetchPokemonsError } from "./actions";
+import Types from "./Types";
+import api from "../../../utils/services/api";
 
 const pokemonResponse = {
   name: "",
@@ -35,7 +30,7 @@ function* fetchPokemonData({ offset }) {
 }
 
 function* watcherFetchData() {
-  yield takeLatest(FETCH_POKEMON_DATA, fetchPokemonData);
+  yield takeLatest(Types.FETCH_POKEMON_DATA, fetchPokemonData);
 }
 
 const DataSagas = [fork(watcherFetchData)];
