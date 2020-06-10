@@ -4,15 +4,21 @@ import { connect } from "react-redux";
 import "./Content.scss";
 import PokemonCard from "../PokemonCard";
 
-import { fetchPokemonsPending } from "../../store/actions";
+import {
+  fetchPokemonsPending,
+  filterPokemons,
+  fetchPokemonData,
+} from "../../store/actions";
 
 class Content extends Component {
   componentDidMount() {
-    this.props.fetchPokemonsPending();
+    this.props.fetchPokemonData(0);
+
+    //this.props.fetchPokemonsPending();
   }
+
   render() {
     const { data, error, loading } = this.props;
-
     console.log("Console da view =>", data);
     if (loading) return <div>loading...</div>;
     if (error) return console.log(error.menssage);
@@ -31,6 +37,10 @@ class Content extends Component {
               />
             );
           })}
+
+        <button onClick={(e) => this.props.fetchPokemonData()}>
+          CLick me!
+        </button>
       </div>
     );
   }
@@ -44,4 +54,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchPokemonsPending })(Content);
+export default connect(mapStateToProps, {
+  fetchPokemonData,
+})(Content);
