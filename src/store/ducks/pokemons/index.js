@@ -2,7 +2,6 @@ import Types from "./Types";
 
 const initialState = {
   items: [],
-  offset: 0,
   pending: false,
   error: null,
   nextPage: null,
@@ -24,22 +23,25 @@ export default (state = { initialState }, action) => {
       };
     }
     case Types.FETCH_POKEMONS_SUCCESS: {
-      console.log("Console do reducer ->", action.payload);
       return {
         ...state,
         pending: false,
         items: action.payload,
       };
     }
-    // case FILTER_POKEMONS: {
-    //   console.log("Console 2 do reducer =>", action.payload.items);
-    //   return {
-    //     ...state,
-    //     pending: false,
-    //     filteredItems: action.payload.items,
-    //     name: action.payload.name,
-    //   };
-    // }
+    case Types.SET_OFFSET: {
+      console.log(
+        "Pagina anterior ->",
+        action.payload.prevPage,
+        "Proxima Pagina ->",
+        action.payload.nextPage
+      );
+      return {
+        ...state,
+        nextPage: action.payload.nextPage,
+        prevPage: action.payload.prevPage,
+      };
+    }
     case Types.FETCH_POKEMONS_ERROR: {
       return {
         ...state,

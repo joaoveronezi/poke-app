@@ -19,13 +19,10 @@ export const fetchPokemonsError = (error) => ({
   error: error,
 });
 
-export const filterPokemons = (pokemons, name) => ({
-  type: Types.FILTER_POKEMONS,
+export const setOffsetPokemons = (prevPage, nextPage) => ({
+  type: Types.SET_OFFSET,
   payload: {
-    name: name,
-    items:
-      name === ""
-        ? pokemons
-        : pokemons.filter((a) => a.name.indexOf(name.toUpperCase()) >= 0),
+    prevPage,
+    nextPage,
   },
 });
