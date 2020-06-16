@@ -18,7 +18,7 @@ function* fetchPokemonData({ offset }) {
     offset = index.data.offset;
     console.log("IMPORTANTE", offset);
     //Primeira requisição para pegar as paginas
-    const pageResponse = yield call(api.get, `?offset=${offset}&limit=${20}`);
+    const pageResponse = yield call(api.get, `?offset=${offset}&limit=${27}`);
 
     let nextPage = pageResponse.data.next;
     console.log("IMPORTANTE2", nextPage);
@@ -42,7 +42,7 @@ function* fetchPokemonData({ offset }) {
     console.log("SAGA", prevPage, nextPage);
 
     //Segunda requisição para passar qual pagina queremos
-    const response = yield call(api.get, `?offset=${offset}&limit=${20}`);
+    const response = yield call(api.get, `?offset=${offset}&limit=${27}`);
     console.log("Console do saga", response.data);
 
     const requests = yield Promise.all(

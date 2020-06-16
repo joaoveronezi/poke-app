@@ -18,30 +18,35 @@ class Content extends Component {
   }
 
   render() {
-    const { data, error, loading } = this.props;
-    console.log("Console da view =>", data);
+    const { data, error, loading, prevPage, nextPage } = this.props;
     if (loading) return <div>loading...</div>;
     if (error) return console.log(error.menssage);
 
     return (
-      <div className="List">
-        {data &&
-          data.map((item, index) => {
-            return (
-              <PokemonCard
-                key={item.id}
-                id={item.id}
-                name={item.name}
-                image={item.sprites.front_default}
-                types={item.types}
-              />
-            );
-          })}
-
-        <button onClick={(e) => this.props.fetchPokemonData(40)}>
-          CLick me!
-        </button>
-      </div>
+      <>
+        <div className="List">
+          {data &&
+            data.map((item, index) => {
+              return (
+                <PokemonCard
+                  key={item.id}
+                  id={item.id}
+                  name={item.name}
+                  image={item.sprites.front_default}
+                  types={item.types}
+                />
+              );
+            })}
+        </div>
+        <div>
+          <button onClick={(e) => this.props.fetchPokemonData(prevPage)}>
+            Prev page
+          </button>
+          <button onClick={(e) => this.props.fetchPokemonData(nextPage)}>
+            Next Page
+          </button>
+        </div>
+      </>
     );
   }
 }
@@ -51,6 +56,8 @@ const mapStateToProps = (state) => {
     data: state.data.items,
     error: state.data.error,
     loading: state.data.pending,
+    prevPage: state.data.prevPage,
+    nextPage: state.data.nextPage,
   };
 };
 
