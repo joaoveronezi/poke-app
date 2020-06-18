@@ -1,0 +1,21 @@
+button {
+  background-color: #3b5ca7;
+  margin-right: 1%;
+  margin-left: 1%;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+button:hover {
+  background-color: #ffcb05;
+  cursor: pointer;
+}
+.disabled {
+  pointer-events: none;
+  background-color: #616161;
+}

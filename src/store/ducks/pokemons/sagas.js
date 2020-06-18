@@ -16,12 +16,10 @@ function* fetchPokemonData({ offset }) {
   try {
     const index = yield select();
     offset = index.data.offset;
-    console.log("IMPORTANTE", offset);
+
     //Primeira requisição para pegar as paginas
     const pageResponse = yield call(api.get, `?offset=${offset}&limit=${27}`);
-
     let nextPage = pageResponse.data.next;
-    console.log("IMPORTANTE2", nextPage);
     nextPage = nextPage.replace(
       `https://pokeapi.co/api/v2/pokemon/?offset=`,
       ``
@@ -39,7 +37,6 @@ function* fetchPokemonData({ offset }) {
     } else prevPage = false;
 
     yield put(setOffsetPokemons(prevPage, nextPage));
-    console.log("SAGA", prevPage, nextPage);
 
     //Segunda requisição para passar qual pagina queremos
     const response = yield call(api.get, `?offset=${offset}&limit=${27}`);
