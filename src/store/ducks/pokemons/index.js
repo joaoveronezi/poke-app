@@ -6,6 +6,7 @@ const initialState = {
   error: null,
   nextPage: null,
   prevPage: null,
+  search: "",
 };
 
 export default (state = { initialState }, action) => {
@@ -47,6 +48,12 @@ export default (state = { initialState }, action) => {
         ...state,
         pending: false,
         error: action.error,
+      };
+    }
+    case Types.FILTER_POKEMONS: {
+      return {
+        ...state,
+        search: action.payload,
       };
     }
 

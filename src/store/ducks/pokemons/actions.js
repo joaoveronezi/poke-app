@@ -26,3 +26,8 @@ export const setOffsetPokemons = (prevPage, nextPage) => ({
     nextPage,
   },
 });
+
+export const filterPokemon = (keyword) => ({
+  type: Types.FILTER_POKEMONS,
+  payload: keyword,
+});

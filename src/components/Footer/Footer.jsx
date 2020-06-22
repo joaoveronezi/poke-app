@@ -6,32 +6,19 @@ import "./style.scss";
 
 const Footer = ({ prevPage, nextPage }) => {
   const dispatch = useDispatch();
-  if (prevPage) {
-    return (
-      <div>
-        <button onClick={(e) => dispatch(fetchPokemonData(prevPage))}>
-          &laquo;
-        </button>
-        <button onClick={(e) => dispatch(fetchPokemonData(nextPage))}>
-          &raquo;
-        </button>
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <button
-          className="disabled"
-          onClick={(e) => dispatch(fetchPokemonData(prevPage))}
-        >
-          &laquo;
-        </button>
-        <button onClick={(e) => dispatch(fetchPokemonData(nextPage))}>
-          &raquo;
-        </button>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <button
+        className={prevPage ? "" : "disabled"}
+        onClick={(e) => dispatch(fetchPokemonData(prevPage))}
+      >
+        &laquo;
+      </button>
+      <button onClick={(e) => dispatch(fetchPokemonData(nextPage))}>
+        &raquo;
+      </button>
+    </div>
+  );
 };
 
 export default Footer;

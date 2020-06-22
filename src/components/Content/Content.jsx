@@ -4,19 +4,31 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import "./Content.scss";
 import PokemonCard from "../PokemonCard";
 import Footer from "../Footer";
-import { fetchPokemonData } from "../../store/ducks/pokemons/actions";
+import {
+  fetchPokemonData,
+  filterPokemon,
+} from "../../store/ducks/pokemons/actions";
 
 const Content = () => {
-  const { data, error, loading, prevPage, nextPage } = useSelector(
+  const { data, error, loading, prevPage, nextPage, search } = useSelector(
     (state) => ({
       data: state.data.items,
       error: state.data.error,
       loading: state.data.loading,
       prevPage: state.data.prevPage,
       nextPage: state.data.nextPage,
+      search: state.data.search,
     }),
     shallowEqual
   );
+
+  data &&
+    data.filter((data) => {
+      if (search == null) {
+        return null;
+      } else if (data.name.toLowerCase().includes(search.toLowerCase()))
+        return console.log(data.name);
+    });
 
   const dispatch = useDispatch();
 
@@ -29,6 +41,11 @@ const Content = () => {
 
   return (
     <>
+      <input
+        type="text"
+        placeholder="Enter item to be searched"
+        onChange={(e) => dispatch(filterPokemon(e.target.value))}
+      />
       <div className="List">
         {data &&
           data.map((item, index) => {
@@ -51,25 +68,3 @@ const Content = () => {
 };
 
 export default Content;
-
-// class Content extends Component {
-//   componentDidMount() {
-//     this.props.fetchPokemonData(0);
-//   }
-
-//   render() {
-//     const { data, error, loading, prevPage, nextPage } = this.props;
-
-// const mapStateToProps = (state) => {
-//   return {
-//     data: state.data.items,
-//     error: state.data.error,
-//     loading: state.data.pending,
-//     prevPage: state.data.prevPage,
-//     nextPage: state.data.nextPage,
-//   };
-// };
-
-// export default connect(mapStateToProps, {
-//   fetchPokemonData,
-// })(Content);
